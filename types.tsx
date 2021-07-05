@@ -1,7 +1,4 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
+import { RouteProp } from '@react-navigation/native';
 
 export type RootStackParamList = {
   Root: undefined;
@@ -9,14 +6,15 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  TabOne: undefined;
-  TabTwo: undefined;
+  Profiles: undefined;
 };
 
-export type TabOneParamList = {
-  TabOneScreen: undefined;
+export type ProfilesListParamList = {
+  ProfilesScreen: undefined;
+  UserProfileScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
-};
+export type UserProfileScreenRouteProp = RouteProp<
+  ProfilesListParamList,
+  'UserProfileScreen'
+>;
