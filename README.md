@@ -16,17 +16,17 @@ Light Theme Profile List
 Light Theme User Profile
 
 <p align="center">
-<img src="./assets/images/light-user-profile.png" alt="user profile" width="640px" height=320px>
+<img src="./assets/images/light-user-profile.png" alt="user profile" width="415px" height="900px">
 </p>
 
 Dark Theme Profile List
 
 <p align="center">
-<img src="./assets/images/dark-profile-list.png" alt="user profile list" width="640px" height=320px>
+<img src="./assets/images/dark-profile-list.png" alt="user profile list" width="415px" height="900px">
 </p>
 
 Dark Theme User Profile
 
 <p align="center">
-<img src="./assets/images/dark-user-profile.png" alt="user profile" width="640px" height=320px>
+<img src="./assets/images/dark-user-profile.png" alt="user profile" width="415px" height="900px">
 </p>
