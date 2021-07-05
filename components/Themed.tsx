@@ -1,8 +1,3 @@
-/**
- * Learn more about Light and Dark modes:
- * https://docs.expo.io/guides/color-schemes/
- */
-
 import * as React from 'react';
 import { Text as DefaultText, View as DefaultView } from 'react-native';
 
@@ -12,7 +7,7 @@ import useColorScheme from '../hooks/useColorScheme';
 export function useThemeColor(
   props: { light?: string; dark?: string },
   colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
+): string {
   const theme = useColorScheme();
   const colorFromProps = props[theme];
 
@@ -31,16 +26,69 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
-export function Text(props: TextProps) {
+export function TextPrimary(props: TextProps): JSX.Element {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'textPrimary'
+  );
+
+  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+}
+export function TextSecondary(props: TextProps): JSX.Element {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const color = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'textSecondary'
+  );
 
   return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
-export function View(props: ViewProps) {
+export function View(props: ViewProps): JSX.Element {
   const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
 
   return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function ViewWithBordersPrimary(props: ViewProps): JSX.Element {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
+  const borderColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'borderPrimary'
+  );
+
+  return (
+    <DefaultView
+      style={[{ backgroundColor, borderColor }, style]}
+      {...otherProps}
+    />
+  );
+}
+
+export function ViewWithBordersSecondary(props: ViewProps): JSX.Element {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'background'
+  );
+  const borderColor = useThemeColor(
+    { light: lightColor, dark: darkColor },
+    'borderSecondary'
+  );
+
+  return (
+    <DefaultView
+      style={[{ backgroundColor, borderColor }, style]}
+      {...otherProps}
+    />
+  );
 }
