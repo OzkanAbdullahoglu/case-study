@@ -6,8 +6,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import WrappedSocketManager from './contexts/SocketContext';
 
-export default function App() {
+export default function App(): JSX.Element | null {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -16,8 +17,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <WrappedSocketManager>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar style={colorScheme} />
+        </WrappedSocketManager>
       </SafeAreaProvider>
     );
   }
