@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "study-case",
-    "slug": "study-case",
+    "name": "case-study",
+    "slug": "case-study",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -29,6 +29,7 @@
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
