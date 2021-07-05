@@ -1,8 +1,3 @@
-/**
- * Learn more about createBottomTabNavigator:
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
-
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,69 +5,74 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ProfilesScreen from '../screens/ProfilesScreen';
+import UserProfileScreen from '../screens/UserProfileScreen';
+import { BottomTabParamList, ProfilesListParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator(): JSX.Element {
   const colorScheme = useColorScheme();
-
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Profiles"
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].tint,
+        style: {
+          backgroundColor: Colors[colorScheme].background,
+        },
+      }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Profiles"
+        component={ProfilesNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          // eslint-disable-next-line react/display-name
+          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']; color: string }) {
+function TabBarIcon(props: {
+  name: React.ComponentProps<typeof Ionicons>['name'];
+  color: string;
+}) {
+  // eslint-disable-next-line react-native/no-inline-styles
   return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const ProfilesStack = createStackNavigator<ProfilesListParamList>();
 
-function TabOneNavigator() {
+function ProfilesNavigator() {
+  const colorScheme = useColorScheme();
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <ProfilesStack.Navigator>
+      <ProfilesStack.Screen
+        name="ProfilesScreen"
+        component={ProfilesScreen}
+        options={{
+          headerTitle: '',
+          headerTransparent: false,
+          headerStyle: {
+            backgroundColor: Colors[colorScheme].background,
+          },
+        }}
       />
-    </TabOneStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+      <ProfilesStack.Screen
+        name="UserProfileScreen"
+        component={UserProfileScreen}
+        options={{
+          headerTitle: '',
+          headerTransparent: false,
+          headerBackTitleVisible: false,
+          headerBackImage: () => null,
+          headerStyle: {
+            backgroundColor: Colors[colorScheme].background,
+          },
+        }}
       />
-    </TabTwoStack.Navigator>
+    </ProfilesStack.Navigator>
   );
 }
