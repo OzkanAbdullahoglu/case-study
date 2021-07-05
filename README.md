@@ -10,7 +10,7 @@ App is availabe in this expo [link](https://expo.io/@ozkanabd/case-study)
 Light Theme Profile List
 
 <p align="center">
-<img src="./assets/images/light-profile-list.png" alt="user profile list" width="640px" height=320px>
+<img src="./assets/images/light-profile-list.png" alt="user profile list" width="830px" height=1800px>
 </p>
 
 Light Theme User Profile
